@@ -7,8 +7,8 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="w-full py-5 bg-white dark:bg-gray-900 shadow-md">
-      <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6">
+    <header className="w-full py-5 bg-gray-900  shadow-md">
+      <nav className="max-w-7xl mx-auto flex items-center justify-between  px-4 md:px-6">
 
         {/* Brand Name */}
         <div>
@@ -19,7 +19,7 @@ export default function Header() {
 
         {/* Hamburger Menu Button */}
         <button
-          className="md:hidden flex items-center text-black dark:text-white focus:outline-none"
+          className="md:hidden flex items-center focus:outline-none text-white"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           <svg
@@ -41,20 +41,20 @@ export default function Header() {
         {/* Desktop Navbar */}
         {!mobileMenuOpen && (
           <div className="hidden md:flex items-center space-x-6">
-            <Link href="/about" className="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-400">
+            <Link href="/about" className="text-white  hover:text-gray-300 ">
               About
             </Link>
-            <Link href="/community" className="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-400">
+            <Link href="/community" className="text-white  hover:text-gray-200">
               Community
             </Link>
-            <Link href="/challenges" className="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-400">
+            <Link href="/challenges" className="text-white  hover:text-gray-200">
               Challenges
             </Link>
-            <Link href="/contact" className="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-400">
+            <Link href="/contact" className="text-white  hover:text-gray-2000">
               Contact
             </Link>
             <div className="flex items-center space-x-4">
-              <Link href="/auth/profile" className="flex items-center text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-400">
+              <Link href="/auth/profile" className="flex items-center bg-w text-white  hover:text-gray-200 dark:hover:text-gray-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -71,16 +71,6 @@ export default function Header() {
                 </svg>
                 <span className="ml-2">Profile</span>
               </Link>
-              <Link href="/auth/login">
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500">
-                  Login
-                </button>
-              </Link>
-              <Link href="/auth/register">
-                <button className="px-4 py-2 bg-orange-400 text-white rounded-lg hover:bg-orange-300">
-                  Register
-                </button>
-              </Link>
               <AuthButton/>
             </div>
           </div>
@@ -89,30 +79,21 @@ export default function Header() {
 
       {/* Mobile Navbar */}
       {mobileMenuOpen && (
-        <div className="md:hidden px-4 py-5 bg-white dark:bg-gray-900 shadow-lg space-y-4">
-          <Link href="/about" className="block py-2 text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-400">
+        <div className="md:hidden px-4 py-5 text-white  hover:text-gray-200 shadow-lg space-y-4">
+          <Link href="/about" className="block py-2 text-white  hover:text-gray-200">
             About
           </Link>
-          <Link href="/community" className="block py-2 text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-400">
+          <Link href="/community" className="block py-2text-white  hover:text-gray-200">
             Community
           </Link>
-          <Link href="/challenges" className="block py-2 text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-400">
+          <Link href="/challenges" className="block py-2 text-white  hover:text-gray-200">
             Challenges
           </Link>
-          <Link href="/contact" className="block py-2 text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-400">
+          <Link href="/contact" className="block py-2 text-white  hover:text-gray-200">
             Contact
           </Link>
           <div className="flex flex-col space-y-4">
-            <Link href="/auth/login">
-              <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500">
-                Login
-              </button>
-            </Link>
-            <Link href="/auth/register">
-              <button className="w-full px-4 py-2 bg-orange-400 text-white rounded-lg hover:bg-orange-300">
-                Register
-              </button>
-            </Link>
+            <AuthButton/>
           </div>
         </div>
       )}

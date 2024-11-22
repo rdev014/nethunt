@@ -2,7 +2,7 @@
 import Link from "next/link";
 export default function Footer() {
   return (
-    <footer className="w-full py-14 dark:bg-gray-900 dark:text-white">
+    <footer className="w-full py-14 bg-gray-900 text-white">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
             <Link href="https://NetHunt.io/" className="flex justify-center ">
@@ -10,11 +10,11 @@ export default function Footer() {
 
             </Link>
                 <ul className="text-lg flex items-center justify-center flex-col gap-7 md:flex-row md:gap-12 transition-all duration-500 py-16 mb-10 border-b border-gray-200 ">
-                    <li><Link href="#" className="text-gray-800 hover:text-gray-900 dark:text-white">NetHunt</Link></li>
-                    <li><Link href="#" className=" text-gray-800 hover:text-gray-900 dark:text-white">Products</Link></li>
-                    <li><Link href="#" className=" text-gray-800 hover:text-gray-900 dark:text-white">Resources</Link></li>
-                    <li><Link href="#" className=" text-gray-800 hover:text-gray-900 dark:text-white">Blogs</Link></li>
-                    <li><Link href="/support" className=" text-gray-800 hover:text-gray-900 dark:text-white">Support</Link></li>
+                    <li><Link href="#" className=" hover:text-gray-300 text-white">NetHunt</Link></li>
+                    <li><Link href="#" className="  hover:text-gray-300 text-white">Products</Link></li>
+                    <li><Link href="#" className="  hover:text-gray-300 text-white">Resources</Link></li>
+                    <li><Link href="#" className="  hover:text-gray-300 text-white">Blogs</Link></li>
+                    <li><Link href="/support" className="hover:text-gray-300 text-white">Support</Link></li>
                 </ul>
                 <div className="flex space-x-10 justify-center items-center mb-14">
                     <Link href="#" className="block  text-gray-900 transition-all duration-500 hover:text-indigo-600 ">

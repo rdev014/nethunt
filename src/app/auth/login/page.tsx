@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import React, { useEffect } from "react";
 import Spinner from "@/components/Spinner";
+import Image from "next/image";
 
 // Type definitions for the user object
 interface User {
@@ -59,11 +60,17 @@ export default function Login() {
   }, [user]);
 
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 ">
+    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-gray-900">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">
           Login to your account
         </h2>
+        <Image 
+        src='https://cdn.pixabay.com/photo/2022/09/07/12/22/autumn-7438675_960_720.jpg'
+        alt="Picture of the author"
+        width={500}
+        height={500}
+        />
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm  shadow-md shadow-white p-6">
@@ -94,7 +101,7 @@ export default function Login() {
                 Password
               </label>
               <div className="text-sm">
-                <Link href="/auth/forgot-pass" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                <Link href="/auth/forgot" className="font-semibold text-indigo-600 hover:text-indigo-500">
                   Forgot password?
                 </Link>
               </div>

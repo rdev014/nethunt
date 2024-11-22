@@ -1,15 +1,48 @@
 "use client"
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 
-const ForgotPassword = () => {
-  const [email, setEmail] = useState("");
+export default function Forgot() {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle password reset logic here
-    console.log(`Password reset link sent to: ${email}`);
+    setMessage('');
+    setError('');
+
+    try {
+      const res = await fetch("/api/users/forgot", {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+      
+      if (res.ok) {
+        const data = await res.json();
+        setMessage(data.message || "Something went wrong in pass")
+
+      } else {
+        const errorText = await res.text();
+        try {
+          const errorData = JSON.parse(errorText);
+          setError(errorData.message || "Someting is wrong hutiya ")
+
+        } catch {
+          setError('Unknown error');
+        }
+
+      }
+
+    } catch (err) {
+      console.log("Error in forgot password submission", err);
+      setError("Error in forgot password submission,Please try again.");
+
+    }
   };
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-gray-200 ">
@@ -43,10 +76,16 @@ const ForgotPassword = () => {
             Reset Password
           </button>
         </form>
+        {error && (
+          <p className="text-red-500 text-sm mb-4 text-center">{error}</p>
+        )}
+        {message && (
+          <p className="text-green-500 text-sm mb-4 text-center">{message}</p>
+        )}
         <p className="text-center text-sm text-gray-400 mt-4">
           Remembered your password?{" "}
           <Link
-            href="/login"
+            href="/auth/login"
             className="text-blue-400 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Go back to login
@@ -57,4 +96,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+
