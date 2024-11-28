@@ -10,8 +10,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        blue: {
+          600: '#1D4ED8',
+        },
+        orange: {
+          600: '#F97316',
+        },
       },
     },
   },

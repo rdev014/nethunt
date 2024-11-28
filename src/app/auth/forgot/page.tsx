@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import Link from "next/link";
 import { useState } from "react";
 
@@ -21,32 +22,30 @@ export default function Forgot() {
       
       if (res.ok) {
         const data = await res.json();
-        setMessage(data.message || "Something went wrong in pass")
+        setMessage(data.message || "Password reset link sent successfully.");
 
       } else {
         const errorText = await res.text();
         try {
           const errorData = JSON.parse(errorText);
-          setError(errorData.message || "Someting is wrong hutiya ")
+          setError(errorData.message || "An error occurred. Please try again.");
 
         } catch {
-          setError('Unknown error');
+          setError('Unknown error occurred.');
         }
 
       }
 
     } catch (err) {
       console.log("Error in forgot password submission", err);
-      setError("Error in forgot password submission,Please try again.");
+      setError("Error in forgot password submission. Please try again.");
 
     }
   };
 
-
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-gray-200 ">
-      <div className="bg-gray-800 shadow-sm  rounded-lg p-6  w-full max-w-md  shadow-gray-300">
+    <div className="min-h-screen flex items-center justify-center dark:bg-gray-900 dark:text-gray-200">
+      <div className="dark:bg-gray-800 shadow-lg  dark:shadow-sm rounded-lg p-6 w-full max-w-md dark:shadow-gray-300">
         <h2 className="text-2xl font-bold mb-4 text-center">Forgot Password</h2>
         <p className="text-gray-400 text-sm text-center mb-6">
           Enter your email address to reset your password.
@@ -66,7 +65,7 @@ export default function Forgot() {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="Enter your email"
-              className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-gray-700 rounded-lg dark:bg-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <button
@@ -95,5 +94,3 @@ export default function Forgot() {
     </div>
   );
 };
-
-

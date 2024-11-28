@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import AuthButton from "../Authbutton";
+import ThemeSwitch from "../ThemeSwitch";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -50,6 +51,9 @@ export default function Header() {
             <Link href="/challenges" className="text-white  hover:text-gray-200">
               Challenges
             </Link>
+            <Link href="/blogs" className="block py-2 text-white  hover:text-gray-200">
+            Blogs
+          </Link>
             <Link href="/contact" className="text-white  hover:text-gray-2000">
               Contact
             </Link>
@@ -72,6 +76,7 @@ export default function Header() {
                 <span className="ml-2">Profile</span>
               </Link>
               <AuthButton/>
+              <ThemeSwitch/>
             </div>
           </div>
         )}
@@ -89,12 +94,16 @@ export default function Header() {
           <Link href="/challenges" className="block py-2 text-white  hover:text-gray-200">
             Challenges
           </Link>
+          <Link href="/blogs" className="block py-2 text-white  hover:text-gray-200">
+            Blogs
+          </Link>
           <Link href="/contact" className="block py-2 text-white  hover:text-gray-200">
             Contact
           </Link>
           <div className="flex flex-col space-y-4">
             <AuthButton/>
           </div>
+         
         </div>
       )}
     </header>

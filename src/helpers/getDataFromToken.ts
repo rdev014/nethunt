@@ -8,17 +8,20 @@ interface decodetoken {
 }
 
 
-export const getdata = (request: NextRequest): string | null => {
+export const getDataFromToken = (request: NextRequest): string | null => {
 
 
     try {
         const token = request.cookies.get("token")?.value || '';
 
         if (!token) {
-            throw new Error("token is missing")
+            throw new Error("Token is missing")
+        }
+        if(!token){
+            return 'please login'
         }
         const decodetoken = jwt.verify(token, process.env.TOKEN_SECRET!) as decodetoken;
-        return decodetoken.id;
+        return decodetoken.username;
 
     } catch (error: unknown) {
         console.error(error);

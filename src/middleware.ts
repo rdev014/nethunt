@@ -18,6 +18,10 @@ export const config = { matcher:[
     '/',
     '/auth/profile',
     '/auth/login',
-    '/auth/register'
+    '/auth/register',
+    '/challenges',
+    '/blogs',
+    '/community'
+
 ]
 }

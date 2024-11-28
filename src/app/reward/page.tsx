@@ -3,21 +3,6 @@ import React from 'react';
 export default function Rewards() {
   return (
     <div className="bg-gray-900 text-gray-100 min-h-screen">
-      {/* Header */}
-      {/* <header className="bg-blue-800 text-white p-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-2xl font-semibold">NetHunt</div>
-          <nav>
-            <ul className="flex space-x-6">
-              <li><a href="/" className="hover:text-orange-400">Home</a></li>
-              <li><a href="/challenges" className="hover:text-orange-400">Challenges</a></li>
-              <li><a href="/community" className="hover:text-orange-400">Community</a></li>
-              <li><a href="/rewards" className="hover:text-orange-400">Rewards</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header> */}
-
       {/* Main Content */}
       <main className="py-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
