@@ -3,10 +3,25 @@
 
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 export default function AuthButton() {
-    const { isAuthenticated, logout } = useAuth();
-   
+    const { isAuthenticated, setIsAuthenticated} = useAuth();
+    const router = useRouter();
+    const handleLogout = async () => {
+
+        try {
+          const response = await axios.get('/api/users/logout')
+          if (response.status === 200) {
+            setIsAuthenticated(false);
+            router.push('/auth/login');
+          }
+        } catch (error: any) {
+          console.log(error.message);
+    
+        }
+      }
 
     return (
         <div>
@@ -14,7 +29,7 @@ export default function AuthButton() {
             <div className="flex items-center space-x-4">
                 {isAuthenticated ? (
                     <button
-                        onClick={logout}
+                        onClick={handleLogout }
                         className="text-white bg-orange-400 px-4 py-2 rounded-xl hover:bg-orange-500 transition"
                     >
                         Logout

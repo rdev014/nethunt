@@ -26,7 +26,7 @@ export default function Home() {
       gsap.to(star, {
         x: "85vw",  // Move the star to the right
         y: "50vh",  // Move the star to the bottom
-        duration: Math.random() * 3 + 1, // Randomize the duration
+        duration: Math.random() * 2 + 1, // Randomize the duration
         ease: "power1.in",
         onComplete: () => {
           // Splash effect when the star reaches the bottom-right
