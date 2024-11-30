@@ -9,19 +9,23 @@ import axios from 'axios';
 export default function AuthButton() {
     const { isAuthenticated, setIsAuthenticated} = useAuth();
     const router = useRouter();
+    
     const handleLogout = async () => {
 
         try {
-          const response = await axios.get('/api/users/logout')
-          if (response.status === 200) {
-            setIsAuthenticated(false);
-            router.push('/auth/login');
+            const response = await axios.get('/api/users/logout');
+            if (response.status === 200) {
+              setIsAuthenticated(false);
+              router.push('/auth/login');
+            }
+          } catch (error: unknown) {
+            if (error instanceof Error) {
+              console.log(error.message); // Safely access error.message
+            } else {
+              console.log('An unexpected error occurred:', error);
+            }
           }
-        } catch (error: any) {
-          console.log(error.message);
-    
         }
-      }
 
     return (
         <div>
