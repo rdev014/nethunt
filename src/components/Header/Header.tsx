@@ -1,116 +1,199 @@
-"use client";
-import Link from "next/link";
-import { useState } from "react";
-import AuthButton from "../Authbutton";
-import ThemeSwitch from "../ThemeSwitch";
+'use client'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import Link from 'next/link'
+import ThemeSwitch from '../ThemeSwitch'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import axios from 'axios'
+import { useAuth } from '@/contexts/AuthContext'
+
+interface NavigationItem {
+  name: string
+  href: string
+  current: boolean
+}
+
+interface UserNavigationItem {
+  name: string
+  href: string
+}
+
+const user = {
+  name: 'Tom Cook',
+  email: 'tom@example.com',
+  imageUrl:
+    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+}
+
+const navigation: NavigationItem[] = [
+  { name: 'About', href: '/about', current: false },
+  { name: 'Community', href: '/community', current: false },
+  { name: 'Challenges', href: '/challenges', current: false },
+  { name: 'Blogs', href: '/blogs', current: true },
+  { name: 'Contact', href: '/contact', current: false },
+  { name: 'Profile', href: '/auth/profile', current: false },
+  { name: 'Reward', href: '/reward', current: false },
+]
+
+const userNavigation: UserNavigationItem[] = [
+  { name: 'Your Profile', href: '/auth/profile' },
+  { name: 'Settings', href: '/auth/settings' },
+]
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isAuthenticated, setIsAuthenticated } = useAuth()
+  const router = useRouter()
+
+  // Handle Logout
+  const handleLogout = async () => {
+    try {
+      const response = await axios.get('/api/users/logout')
+      if (response.status === 200) {
+        setIsAuthenticated(false)
+        router.push('/auth/login')
+      }
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        console.error('Axios error:', error.response?.data || error.message)
+      } else {
+        console.error('Unexpected error:', error)
+      }
+    }
+  }
 
   return (
-    <header className="w-full py-5 bg-gray-900  shadow-md">
-      <nav className="max-w-7xl mx-auto flex items-center justify-between  px-4 md:px-6">
-
-        {/* Brand Name */}
-        <div>
-          <Link href="/" aria-label="NetHunt" className="text-3xl font-semibold text-lime-400 dark:text-lime-400">
-            NetHunt
-          </Link>
-        </div>
-
-        {/* Hamburger Menu Button */}
-        <button
-          className="md:hidden flex items-center focus:outline-none text-white"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d={mobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-            />
-          </svg>
-        </button>
-
-        {/* Desktop Navbar */}
-        {!mobileMenuOpen && (
-          <div className="hidden md:flex items-center space-x-6">
-            <Link href="/about" className="text-white  hover:text-gray-300 ">
-              About
-            </Link>
-            <Link href="/community" className="text-white  hover:text-gray-200">
-              Community
-            </Link>
-            <Link href="/challenges" className="text-white  hover:text-gray-200">
-              Challenges
-            </Link>
-            <Link href="/blogs" className="block py-2 text-white  hover:text-gray-200">
-            Blogs
-          </Link>
-            <Link href="/contact" className="text-white  hover:text-gray-2000">
-              Contact
-            </Link>
-            <div className="flex items-center space-x-4">
-              <Link href="/auth/profile" className="flex items-center bg-w text-white  hover:text-gray-200 dark:hover:text-gray-400">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5.121 18.121A4 4 0 015 17V7a4 4 0 014-4h6a4 4 0 014 4v10a4 4 0 01-.121 1.121M12 7h.01M16 20H8a2 2 0 110-4h8a2 2 0 110 4z"
-                  />
-                </svg>
-                <span className="ml-2">Profile</span>
-              </Link>
-              <Link href="/reward" className="text-white  hover:text-gray-2000">
-             Reward
-            </Link>
-              {/* <AuthButton/> */}
-              <AuthButton/>
-              
-              <ThemeSwitch/>
+    <Disclosure as="nav" className="bg-gray-900 dark:bg-gray-800 shadow-lg">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          {/* Brand Name */}
+          <div className="flex items-center">
+            <div className="flex-shrink-0">
+              <Image
+                alt="NetHunt"
+                width={30}
+                height={30}
+                src="https://cdn.pixabay.com/photo/2022/07/24/11/35/women-7341444_1280.jpg"
+                className="h-8 w-8 rounded-full"
+              />
+            </div>
+            <div className="hidden md:block ml-4">
+              <div className="flex items-baseline space-x-6">
+                {/* Navigation Links */}
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    aria-current={item.current ? 'page' : undefined}
+                    className={classNames(
+                      item.current
+                        ? 'text-white bg-indigo-600 rounded-lg py-2 px-3 transition-all duration-300'
+                        : 'text-gray-300 hover:bg-indigo-600 hover:text-white rounded-lg py-2 px-3 transition-all duration-300'
+                    )}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
-        )}
-      </nav>
 
-      {/* Mobile Navbar */}
-      {mobileMenuOpen && (
-        <div className="md:hidden px-4 py-5 text-white  hover:text-gray-200 shadow-lg space-y-4">
-          <Link href="/about" className="block py-2 text-white  hover:text-gray-200">
-            About
-          </Link>
-          <Link href="/community" className="block py-2text-white  hover:text-gray-200">
-            Community
-          </Link>
-          <Link href="/challenges" className="block py-2 text-white  hover:text-gray-200">
-            Challenges
-          </Link>
-          <Link href="/blogs" className="block py-2 text-white  hover:text-gray-200">
-            Blogs
-          </Link>
-          <Link href="/contact" className="block py-2 text-white  hover:text-gray-200">
-            Contact
-          </Link>
-          <div className="flex flex-col space-y-4">
-            <AuthButton/>
+          {/* Profile & Theme Switch */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Menu as="div" className="relative">
+              <MenuButton className="relative flex items-center rounded-full bg-gray-800 text-white focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-800 p-2">
+                <span className="sr-only">Open user menu</span>
+                <Image
+                  alt="User Profile"
+                  width={30}
+                  height={30}
+                  src={user.imageUrl}
+                  className="h-8 w-8 rounded-full"
+                />
+              </MenuButton>
+              <MenuItems className="absolute right-0 mt-2 w-48 rounded-md bg-white py-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                {userNavigation.map((item) => (
+                  <MenuItem key={item.name}>
+                    <Link
+                      href={item.href}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      {item.name}
+                    </Link>
+                  </MenuItem>
+                ))}
+                <div className="mt-2 px-4 py-2 text-center">
+                  {isAuthenticated ? (
+                    <button
+                      onClick={handleLogout}
+                      className="w-full bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-all duration-300"
+                    >
+                      Logout
+                    </button>
+                  ) : (
+                    <>
+                      <Link href="/auth/login" className="block py-1 hover:text-blue-400">
+                        Login
+                      </Link>
+                      <Link href="/auth/register" className="block py-1 hover:text-blue-400">
+                        Register
+                      </Link>
+                    </>
+                  )}
+                </div>
+              </MenuItems>
+            </Menu>
+            <ThemeSwitch />
           </div>
-         
+
+          {/* Mobile Menu Button */}
+          <div className="-mr-2 flex md:hidden">
+            <DisclosureButton className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+              <span className="sr-only">Open main menu</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="block h-6 w-6 group-data-[open]:hidden"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                />
+              </svg>
+            </DisclosureButton>
+          </div>
         </div>
-      )}
-    </header>
-  );
+      </div>
+
+      {/* Mobile Menu Items */}
+      <DisclosurePanel className="md:hidden bg-gray-900">
+        <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+          {navigation.map((item) => (
+            <DisclosureButton
+              key={item.name}
+              as="a"
+              href={item.href}
+              aria-current={item.current ? 'page' : undefined}
+              className={classNames(
+                item.current
+                  ? 'bg-indigo-600 text-white'
+                  : 'text-gray-300 hover:bg-indigo-600 hover:text-white',
+                'block rounded-md px-3 py-2 text-base font-medium transition-all duration-300'
+              )}
+            >
+              {item.name}
+            </DisclosureButton>
+          ))}
+        </div>
+      </DisclosurePanel>
+    </Disclosure>
+  )
 }
