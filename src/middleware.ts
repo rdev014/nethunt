@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export function middleware(request: NextRequest){
     const path = request.nextUrl.pathname
     const isPublicPath = path === '/auth/login' || path === '/auth/register'|| path === '/auth/verifyemail'
-    || path === '/blogs'
+
 
     const token = request.cookies.get('token')?.value || ''
     if(isPublicPath && token){
@@ -21,7 +21,7 @@ export const config = { matcher:[
     '/auth/login',
     '/auth/register',
     '/challenges',
-    '/blogs',
+    '/blogs/create',
     '/community'
 
 ]
