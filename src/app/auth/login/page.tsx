@@ -1,11 +1,11 @@
 "use client";
-
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import React, { useEffect } from "react";
 import Spinner from "@/components/Spinner";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from '@/contexts/AuthContext';
 
 // Type definitions for the user object
 interface User {
@@ -14,57 +14,45 @@ interface User {
 }
 
 export default function Login() {
+
+
+
   const router = useRouter();
-  const {setIsAuthenticated} = useAuth();
 
   // State types
   const [user, setUser] = React.useState<User>({
     email: "",
     password: "",
   });
-
+  const { setIsAuthenticated } = useAuth();
   const [buttonDisable, setButtonDisable] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
 
-  const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent default form submission behavior
-
+  const onLogin = async (e: React.FormEvent) => {
+    e.preventDefault();  // Prevent default form submission behavior
     try {
-        setLoading(true);
-        console.log("Attempting to log in...");
+      setLoading(true);
+      console.log("Attempting to log in...");
 
-        // Make the login request
-        const response = await axios.post("/api/users/login", user, {
-            headers: { "Content-Type": "application/json" },
-        });
-        console.log("Login successful:", response.data);
+      const response = await axios.post("/api/users/login", user, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+      console.log("Login successful:", response.data);
+      setIsAuthenticated(true);
+      // Redirect after successful login
+      router.push('/');
 
-        // Redirect after successful login
-        setIsAuthenticated(true);
-        router.push("/");
     } catch (error: unknown) {
-        // Handle Axios errors
-        if (axios.isAxiosError(error)) {
-            console.error(
-                "Axios error:",
-                error.response
-                    ? { status: error.response.status, data: error.response.data }
-                    : error.message
-            );
-        } 
-        // Handle other unexpected errors
-        else if (error instanceof Error) {
-            console.error("Unexpected error:", error.message);
-        } 
-        // Handle unknown error types
-        else {
-            console.error("An unknown error occurred:", error);
-        }
+      // Log full error details
+      if (axios.isAxiosError(error)) {
+        console.log('Error response:', error.response ? error.response.data : error.message);
+      } else {
+        console.log('Unexpected error:', error);
+      }
     } finally {
-        setLoading(false); // Ensure loading state is reset in any case
+      setLoading(false);
     }
-};
-
+  };
 
   // Effect hook to manage button disable state based on form input
   useEffect(() => {
@@ -76,22 +64,43 @@ export default function Login() {
   }, [user]);
 
   return (
-    <div className="flex min-h-screen flex-col justify-center px-6 py-12 bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
-        <h2 className=" text-center text-2xl font-bold tracking-tight">
+    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 dark:bg-red-800">
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
           Login to your account
         </h2>
       </div>
+      {/* <Image
+        src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa"
+        alt="A beautiful view"
+        width={800}
+        height={600}
+      /> */}
+    <div>
+    {/* Unsplash Example */}
+    <Image 
+      src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa" 
+      alt="Unsplash Example"
+      width={800} 
+      height={600} 
+      priority 
+    />
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md shadow-white border border-gray-200 dark:border-gray-700">
+    {/* Pixabay Example */}
+    <Image 
+      src="https://cdn.pixabay.com/photo/2022/07/24/11/35/women-7341444_1280.jpg" 
+      alt="Pixabay Example"
+      width={800} 
+      height={600} 
+      priority 
+    />
+  </div>
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form onSubmit={onLogin} className="space-y-6">
-          {loading && <Spinner />}
+          {loading ? <Spinner /> : ''}
 
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-            >
+            <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
               Email address
             </label>
             <div className="mt-2">
@@ -103,24 +112,18 @@ export default function Login() {
                 onChange={(e) => setUser({ ...user, email: e.target.value })}
                 required
                 autoComplete="email"
-                className="block w-full rounded-md border-2 py-2 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
               />
             </div>
           </div>
 
           <div>
             <div className="flex items-center justify-between">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-              >
+              <label htmlFor="password" className="block text-sm/6 font-medium text-gray-900">
                 Password
               </label>
               <div className="text-sm">
-                <Link
-                  href="/auth/forgot"
-                  className="font-semibold text-indigo-600 hover:text-indigo-500"
-                >
+                <Link href="/auth/forgot" className="font-semibold text-indigo-600 hover:text-indigo-500">
                   Forgot password?
                 </Link>
               </div>
@@ -134,7 +137,7 @@ export default function Login() {
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
                 required
                 autoComplete="current-password"
-                className="block w-full rounded-md  border-2 py-2 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
               />
             </div>
           </div>
@@ -142,37 +145,21 @@ export default function Login() {
           <div>
             <button
               type="submit"
-              className={`flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none disabled:bg-gray-400 dark:disabled:bg-gray-600`}
+              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               disabled={buttonDisable}
             >
               {buttonDisable ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="h-5 w-5 text-red-500"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636"
-                  />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 stroke-red-500">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
                 </svg>
-              ) : (
-                "Login"
-              )}
+              ) : "Login"}
             </button>
           </div>
         </form>
 
-        <p className="mt-10 text-center text-sm text-gray-500 dark:text-gray-400">
+        <p className="mt-10 text-center text-sm/6 text-gray-500">
           Don&apos;t have an account?{' '}
-          <Link
-            href="/auth/register"
-            className="font-semibold text-indigo-600 hover:text-indigo-500"
-          >
+          <Link href="/auth/register" className="font-semibold text-indigo-600 hover:text-indigo-500">
             Register
           </Link>
         </p>

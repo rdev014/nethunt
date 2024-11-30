@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';  // Importing jwt for token signing
 
-
 // Connect to the database
 connect();
 
@@ -44,13 +43,12 @@ export async function POST(request: NextRequest) {
 
     // Create token payload
     const tokenData = {
-      id: user._id,
       username: user.username,
       email: user.email
     };
 
     // Sign JWT token with a secret (ensure TOKEN_SECRET is set in .env)
-    const token = jwt.sign(tokenData, process.env.TOKEN_SECRET!, { expiresIn  : '1d' });
+    const token = jwt.sign(tokenData, process.env.TOKEN_SECRET!, { expiresIn: '1d' });
 
     // Prepare the response with token in cookies
     const response = NextResponse.json({
@@ -67,27 +65,20 @@ export async function POST(request: NextRequest) {
     });
 
     return response;
-  } catch (error: unknown) {
-    // Handle errors with a generic message
-    if (error instanceof Error) {
-        // Log the error message for debugging
-        console.error('Login error:', error.message);
+  } catch (err: unknown) {
+    // Handle any unexpected errors
+    if (err instanceof Error) {
 
-        // Respond with a 500 error and a message
         return NextResponse.json(
-          { error: 'Something went wrong. Please try again later.' },
-          { status: 500 }
-        );
-    } else {
-        // Handle unexpected error types
-        console.error('Unexpected error:', error);
-
-        // Respond with a 500 error and a fallback message
-        return NextResponse.json(
-          { error: 'An unknown error occurred. Please try again later.' },
-          { status: 500 }
+            { message: `Server error: ${err.message}`, success: false },
+            { status: 500 }
         );
     }
-}
 
+    console.error('Unexpected error occurred:', err);
+    return NextResponse.json(
+        { message: 'Unexpected error occurred while updating the blog.', success: false },
+        { status: 500 }
+    );
+}
 }

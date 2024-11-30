@@ -11,64 +11,52 @@ interface SendEmailProps {
 
 export const sendEmail = async ({ email, emailType, userId, verificationLink }: SendEmailProps) => {
     try {
-        // Check if the required environment variables are set
-        const mailHost = process.env.MAIL_HOST;
-        const mailPort = process.env.MAIL_PORT;
-        const mailUsername = process.env.MAIL_USERNAME;
-        const mailPassword = process.env.MAIL_PASSWORD;
-        const mailFromAddress = process.env.MAIL_FROM_ADDRESS;
-
-        if (!mailHost || !mailPort || !mailUsername || !mailPassword || !mailFromAddress) {
-            throw new Error('Mail environment variables are missing.');
-        }
-
         const hashedToken = await bcryptjs.hash(userId.toString(), 10);
-        const expiryTime = Date.now() + 3600000;
 
-        // Update the user with the hashed token and expiry based on the email type
         if (emailType === 'VERIFY') {
             await User.findByIdAndUpdate(userId, {
                 verifyToken: hashedToken,
-                verifyTokenExpiry: expiryTime,
+                verifyTokenExpiry: Date.now() + 3600000, // 1 hour expiry
             });
         } else if (emailType === 'RESET') {
             await User.findByIdAndUpdate(userId, {
                 forgotPasswordToken: hashedToken,
-                forgotPasswordTokenExpiry: expiryTime,
+                forgotPasswordTokenExpiry: Date.now() + 3600000, // 1 hour expiry
             });
         }
 
-        // Check if verificationLink is provided (for 'VERIFY' or 'RESET' email type)
-        if (!verificationLink) {
-            throw new Error('Verification link is required.');
-        }
+        const mailHost = process.env.MAIL_HOST!;
+        const mailPort = parseInt(process.env.MAIL_PORT!); // Ensure it's a number
+        const mailUsername = process.env.MAIL_USERNAME!;
+        const mailPassword = process.env.MAIL_PASSWORD!;
 
-        // Set up the email transport
         const transport = nodemailer.createTransport({
+            service: 'smtp', // Explicitly define the service
             host: mailHost,
-            port: Number(mailPort), // Ensure port is a number
+            port: mailPort,
             auth: {
                 user: mailUsername,
                 pass: mailPassword,
             },
-            secure: false, // Use true if using SSL/TLS (usually for port 465)
+            secure: mailPort === 465, // Use TLS if port is 465
         });
 
-        // Set up the mail options
         const mailOptions = {
-            from: mailFromAddress,
+            from: process.env.MAIL_FROM_ADDRESS!,
             to: email,
             subject: emailType === 'VERIFY' ? 'Verify your email address' : 'Reset your password',
-            html: `<p>Click <a href="${verificationLink}">here</a> to ${emailType === 'VERIFY' ? 'verify your email address' : 'reset your password'}.</p>`,
+            html: `<p>Click <a href="${verificationLink}">here</a> to ${
+                emailType === 'VERIFY' ? 'verify your email address' : 'reset your password'
+            }.<br/>
+            If the link doesn't work, copy and paste this URL into your browser:<br/>
+            ${verificationLink}</p>`,
         };
 
-        // Send the email
         const mailResponse = await transport.sendMail(mailOptions);
 
         return mailResponse;
     } catch (error: unknown) {
         if (error instanceof Error) {
-            console.error(error.stack); // Log the error stack for debugging purposes
             throw new Error(`Failed to send email: ${error.message}`);
         } else {
             throw new Error('An unknown error occurred');

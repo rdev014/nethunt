@@ -1,4 +1,5 @@
-'use client';
+"use client";
+
 import axios from 'axios';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -10,25 +11,22 @@ export default function VerifyEmail() {
 
   const verifyUserEmail = async () => {
     if (!token) return;
+
     try {
       await axios.post('/api/users/verifyemail', { token });
       setVerified(true);
-    } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
-          // Safely handle Axios-specific errors
-          setError(error.response?.data?.message || 'Error occurred during verification.');
-      } else if (error instanceof Error) {
-          // Handle general JavaScript errors
-          setError(error.message || 'An unexpected error occurred');
+    } catch (err: unknown) {
+      // Handle error as a generic type and narrow it later
+      if (axios.isAxiosError(err) && err.response?.data) {
+        setError(err.response.data.message || 'Error occurred during verification.');
       } else {
-          // Fallback for unknown error types
-          setError('Network Error or unknown error');
+        setError('Network error or unexpected issue.');
       }
-  }
-  
+    }
   };
 
   useEffect(() => {
+    // Extract token from URL query parameters
     const urlToken = new URLSearchParams(window.location.search).get('token');
     setToken(urlToken);
   }, []);
@@ -37,37 +35,32 @@ export default function VerifyEmail() {
     if (token) {
       verifyUserEmail();
     }
-  }, [token,verifyUserEmail]);
+  }, [token]);
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex items-center justify-center ">
-      <div className="w-full max-w-lg p-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm shadow-white">
-        <h1 className="text-3xl font-semibold text-center text-blue-500">Verify Email</h1>
-        <p className="mt-4 text-center text-gray-500">
-          {token ? token : 'No token found.'}
-        </p>
-        
-        {verified && (
-          <div className="mt-6 text-center text-green-500 ">
-            <p>Your email has been verified successfully!</p>
-            <Link href="/auth/login">
-              <a className="mt-4 inline-block text-blue-500 hover:underline">Go to Login</a>
-            </Link>
-          </div>
-        )}
+    <div>
+      <h1>Verify Email</h1>
 
-        {error && (
-          <div className="mt-6 text-center text-red-500">
-            <p>{error}</p>
-          </div>
-        )}
+      {token && <p>Token: {token}</p>}
 
-        {!verified && !error && token && (
-          <div className="mt-6 text-center text-gray-600 dark:text-gray-400">
-            <p>Verifying your email...</p>
-          </div>
-        )}
-      </div>
+      {verified && (
+        <div>
+          <p>Email successfully verified!</p>
+          <Link href="/auth/login">Go to Login</Link>
+        </div>
+      )}
+
+      {error && (
+        <div>
+          <p>Error: {error}</p>
+        </div>
+      )}
+
+      {!verified && !error && token && (
+        <div>
+          <p>Verifying your email...</p>
+        </div>
+      )}
     </div>
   );
 }
