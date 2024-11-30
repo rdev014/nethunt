@@ -16,9 +16,16 @@ export default function Reset() {
     try {
       const res = await axios.post('/api/users/reset', { token, password });
       setMessage(res.data.message);
-    } catch (error: any) {
-      setError(error.response?.data?.message || 'Error in password reset');
-    }
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+          setError(error.response?.data?.message || 'Error in password reset');
+      } else if (error instanceof Error) {
+          setError(error.message || 'An unexpected error occurred');
+      } else {
+          setError('An unknown error occurred');
+      }
+  }
+  
   };
 
   useEffect(() => {

@@ -14,9 +14,9 @@ interface Post {
 }
 
 export default async function Popular() {
-  let data = await fetch(`${process.env.APP_URL!}/api/blogs/popular`)
-  let res = await data.json()
-  let posts:Post[] = res.posts
+  const data = await fetch(`${process.env.APP_URL!}/api/blogs/popular`)
+  const res = await data.json()
+  const posts:Post[] = res.posts
   console.log(posts);
   
 

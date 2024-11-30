@@ -21,7 +21,7 @@ export default function ChallengesPage() {
       <div className="mt-16 max-w-7xl mx-auto">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-gray-100">Featured Challenges</h2>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {[
+          {[ 
             { title: 'JavaScript Mastery', level: 'Intermediate', img: '/challenge1.png' },
             { title: 'React JS Bootcamp', level: 'Advanced', img: '/challenge2.png' },
             { title: 'CSS Tricks & Tips', level: 'Beginner', img: '/challenge3.png' },
@@ -48,22 +48,10 @@ export default function ChallengesPage() {
       <div className="mt-16 bg-blue-800 dark:bg-blue-900 py-12 px-6 rounded-lg shadow-lg max-w-7xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4 text-white">Why Join Challenges?</h2>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            {
-              title: 'Earn Unique Badges',
-              description: 'Prove your expertise and showcase your achievements.',
-              icon: '🎖️',
-            },
-            {
-              title: 'Level Up Your Skills',
-              description: 'Learn new concepts while solving real-world problems.',
-              icon: '📈',
-            },
-            {
-              title: 'Join the Community',
-              description: 'Compete and collaborate with a vibrant tech community.',
-              icon: '🌐',
-            },
+          {[ 
+            { title: 'Earn Unique Badges', description: 'Prove your expertise and showcase your achievements.', icon: '🎖️' },
+            { title: 'Level Up Your Skills', description: 'Learn new concepts while solving real-world problems.', icon: '📈' },
+            { title: 'Join the Community', description: 'Compete and collaborate with a vibrant tech community.', icon: '🌐' },
           ].map((benefit, index) => (
             <div key={index} className="text-left flex gap-4">
               <span className="text-4xl">{benefit.icon}</span>
@@ -80,8 +68,9 @@ export default function ChallengesPage() {
       <div className="mt-16 text-center max-w-7xl mx-auto">
         <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">Take the First Step</h2>
         <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-          Choose a challenge, dive in, and grow your skills. There's something for everyone!
+          Choose a challenge, dive in, and grow your skills. There’s something for everyone!
         </p>
+
         <button className="bg-orange-400 hover:bg-orange-500 text-white py-3 px-6 rounded-md font-semibold">
           Browse Challenges
         </button>

@@ -3,7 +3,7 @@ import User from '@/models/userModel';
 import { NextRequest, NextResponse } from 'next/server';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';  // Importing jwt for token signing
-import axios from 'axios';
+
 
 // Connect to the database
 connect();
@@ -68,14 +68,27 @@ export async function POST(request: NextRequest) {
     });
 
     return response;
-  } catch (error: any) {
+  } catch (error: unknown) {
     // Handle errors with a generic message
-    console.error('Login error:', error); // Log the error for debugging
+    if (error instanceof Error) {
+        // Log the error message for debugging
+        console.error('Login error:', error.message);
 
-    // Respond with a 500 error and a message
-    return NextResponse.json(
-      { error: 'Something went wrong. Please try again later.' },
-      { status: 500 }
-    );
-  }
+        // Respond with a 500 error and a message
+        return NextResponse.json(
+          { error: 'Something went wrong. Please try again later.' },
+          { status: 500 }
+        );
+    } else {
+        // Handle unexpected error types
+        console.error('Unexpected error:', error);
+
+        // Respond with a 500 error and a fallback message
+        return NextResponse.json(
+          { error: 'An unknown error occurred. Please try again later.' },
+          { status: 500 }
+        );
+    }
+}
+
 }

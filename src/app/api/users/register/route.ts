@@ -48,8 +48,19 @@ export async function POST(request: NextRequest) {
             savedUser
         })
 
-    } catch (error: any) {
-        return NextResponse.json({ error: 'what the fuck ' + error.message }, { status: 500 })
+    } catch (error: unknown) {
+        console.error('An error occurred:', error); // Log the error for debugging
+    
+        // Safely extract error message
+        const errorMessage =
+            error instanceof Error
+                ? error.message
+                : 'An unexpected error occurred';
+    
+        return NextResponse.json(
+            { error: `Internal Server Error: ${errorMessage}` },
+            { status: 500 }
+        );
     }
 
 }

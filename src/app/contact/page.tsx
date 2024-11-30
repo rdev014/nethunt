@@ -1,22 +1,17 @@
 "use client"
-import { useState } from "react";
+import React, { useState } from "react";
 
-export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+export default function Support() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "", subject:"" });
 
-  const handleChange = (e: any) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Add form submission logic
-    alert("Thank you for contacting us! We'll respond shortly.");
+    // Handle the submit action here
   };
 
   return (

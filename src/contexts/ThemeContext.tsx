@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, ReactNode, useCallback } from 'react';
 
 interface ThemeContextType {
   theme: string;
@@ -14,8 +14,8 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState<string>('light');
   const [login, setLogin] = useState<boolean>(false);  // Track login state
 
+  // Handle theme initialization
   useEffect(() => {
-    // Check localStorage for theme or fall back to system preference
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme) {
       setTheme(storedTheme);
@@ -25,14 +25,8 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  useEffect(() => {
-    // Trigger theme change on login state change
-    if (login) {
-      toggleTheme();
-    }
-  }, [login]);  // This will trigger whenever `login` changes
-
-  const toggleTheme = () => {
+  // Memoize the toggleTheme function so it stays the same across renders
+  const toggleTheme = useCallback(() => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     try {
@@ -40,7 +34,14 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     } catch (error) {
       console.error('Failed to save theme to localStorage:', error);
     }
-  };
+  }, [theme]);  // This ensures the function uses the latest `theme` value
+
+  // Trigger theme change based on login state
+  useEffect(() => {
+    if (login) {
+      toggleTheme();
+    }
+  }, [login, toggleTheme]);  // Add toggleTheme here to avoid stale closures
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, login, setLogin }}>

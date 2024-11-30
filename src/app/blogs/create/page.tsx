@@ -37,11 +37,18 @@ export default function CreateBlogForm() {
       } else {
         setErrorMessage('Failed to create the blog. Please try again.');
       }
-    } catch (error) {
-      setErrorMessage('An error occurred while creating the blog.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+          // Use the error's message if available
+          setErrorMessage(error.message || 'An error occurred while creating the blog.');
+      } else {
+          // Fallback for unknown error types
+          setErrorMessage('An unknown error occurred while creating the blog.');
+      }
+  } finally {
+      setIsSubmitting(false); // Reset the submitting state
+  }
+  
   };
 
   return (

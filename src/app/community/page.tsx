@@ -21,11 +21,11 @@ export default function Community() {
               <div className="mt-4">
                 <ul className="space-y-4">
                   <li className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-sm">
-                    <p className="font-medium">John Doe: "How to optimize your JavaScript code?"</p>
+                    <p className="font-medium">John Doe: &quot;How to optimize your JavaScript code?&quot;</p>
                     <p className="text-gray-600 dark:text-gray-400">A discussion about improving code efficiency and reducing load times.</p>
                   </li>
                   <li className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-sm">
-                    <p className="font-medium">Jane Smith: "New AI tech trends in 2024"</p>
+                    <p className="font-medium">Jane Smith: &quot;New AI tech trends in 2024&quot;</p>
                     <p className="text-gray-600 dark:text-gray-400">Exploring the most exciting trends in artificial intelligence for developers.</p>
                   </li>
                 </ul>
@@ -102,14 +102,14 @@ export default function Community() {
             <li className="flex justify-between items-center p-4 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-sm">
               <div>
                 <p className="font-medium">Alice Williams</p>
-                <p className="text-gray-600 dark:text-gray-400">Completed the 'Tech Quiz Challenge' and earned 10 NetHunter Points.</p>
+                <p className="text-gray-600 dark:text-gray-400">Completed the &quot;Tech Quiz Challenge&quot; and earned 10 NetHunter Points.</p>
               </div>
               <span className="text-orange-500">Just Now</span>
             </li>
             <li className="flex justify-between items-center p-4 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-sm">
               <div>
                 <p className="font-medium">John Doe</p>
-                <p className="text-gray-600 dark:text-gray-400">Fixed 5 bugs in the 'Bug Hunt Challenge' and earned a special badge.</p>
+                <p className="text-gray-600 dark:text-gray-400">Fixed 5 bugs in the &quot;Bug Hunt Challenge&quot; and earned a special badge.</p>
               </div>
               <span className="text-orange-500">5 minutes ago</span>
             </li>

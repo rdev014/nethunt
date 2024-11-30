@@ -75,6 +75,9 @@ export default function Header() {
                 </svg>
                 <span className="ml-2">Profile</span>
               </Link>
+              <Link href="/reward" className="text-white  hover:text-gray-2000">
+             Reward
+            </Link>
               <AuthButton/>
               <ThemeSwitch/>
             </div>

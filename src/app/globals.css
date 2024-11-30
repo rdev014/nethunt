@@ -10,11 +10,11 @@
 
 .shooting-star {
     position: absolute;
-    width: 6px;
+    width: 8px;
     height: 4px;
-    background-color: rgb(244, 175, 175); /* You can change the color here to dark blue */
+    background-color: rgb(255, 9, 9); /* You can change the color here to dark blue */
     border-radius: 50%;
-    box-shadow: 0 0 6px navy, 0 0 10px skyblue; /* Glowing effect */
+    box-shadow: 0 0 6px navy, 0 0 10px rgb(0, 183, 255); /* Glowing effect */
     opacity: 1;
     transform: translateX(0) translateY(0);
     overflow: hidden;

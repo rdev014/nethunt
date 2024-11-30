@@ -2,8 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from 'next/link';
+
 
 
 export default function AuthButton() {
@@ -12,16 +13,21 @@ export default function AuthButton() {
 
  
 
-    // Handle logout
-    const handleLogout = async () => {
-        try {
-            await axios.get('/api/users/logout');
-            setIsLoggedIn(false); // Update state to reflect logged out status
-            router.push('/auth/login'); // Redirect to login page
-        } catch (error:any) {
-            console.log(error.message);
+   // Handle logout
+const handleLogout = async () => {
+    try {
+        await axios.get('/api/users/logout');
+        setIsLoggedIn(false); // Update state to reflect logged-out status
+        router.push('/auth/login'); // Redirect to login page
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            console.error("An error occurred during logout:", error.message);
+        } else {
+            console.error("An unknown error occurred during logout:", error);
         }
-    };
+    }
+};
+
 
     return (
         <div>

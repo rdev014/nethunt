@@ -13,13 +13,19 @@ export default function VerifyEmail() {
     try {
       await axios.post('/api/users/verifyemail', { token });
       setVerified(true);
-    } catch (error: any) {
-      if (error.response && error.response.data) {
-        setError(error.response.data.message || 'Error occurred during verification.');
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+          // Safely handle Axios-specific errors
+          setError(error.response?.data?.message || 'Error occurred during verification.');
+      } else if (error instanceof Error) {
+          // Handle general JavaScript errors
+          setError(error.message || 'An unexpected error occurred');
       } else {
-        setError('Network Error or unknown error');
+          // Fallback for unknown error types
+          setError('Network Error or unknown error');
       }
-    }
+  }
+  
   };
 
   useEffect(() => {
@@ -31,7 +37,7 @@ export default function VerifyEmail() {
     if (token) {
       verifyUserEmail();
     }
-  }, [token]);
+  }, [token,verifyUserEmail]);
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex items-center justify-center ">

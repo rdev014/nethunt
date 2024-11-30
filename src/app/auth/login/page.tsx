@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import React, { useEffect } from "react";
 import Spinner from "@/components/Spinner";
-import Image from "next/image";
 
 // Type definitions for the user object
 interface User {
@@ -25,33 +24,44 @@ export default function Login() {
   const [buttonDisable, setButtonDisable] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
 
-  const onLogin = async (e: any) => {
+  const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent default form submission behavior
+
     try {
-      setLoading(true);
-      console.log("Attempting to log in...");
+        setLoading(true);
+        console.log("Attempting to log in...");
 
-      const response = await axios.post("/api/users/login", user, {
-        headers: { "Content-Type": "application/json" },
-      });
-      console.log("Login successful:", response.data);
+        // Make the login request
+        const response = await axios.post("/api/users/login", user, {
+            headers: { "Content-Type": "application/json" },
+        });
+        console.log("Login successful:", response.data);
 
-      // Redirect after successful login
-      router.push("/");
-    } catch (error: any) {
-      // Log full error details
-      if (axios.isAxiosError(error)) {
-        console.log(
-          "Error response:",
-          error.response ? error.response.data : error.message
-        );
-      } else {
-        console.log("Unexpected error:", error);
-      }
+        // Redirect after successful login
+        router.push("/");
+    } catch (error: unknown) {
+        // Handle Axios errors
+        if (axios.isAxiosError(error)) {
+            console.error(
+                "Axios error:",
+                error.response
+                    ? { status: error.response.status, data: error.response.data }
+                    : error.message
+            );
+        } 
+        // Handle other unexpected errors
+        else if (error instanceof Error) {
+            console.error("Unexpected error:", error.message);
+        } 
+        // Handle unknown error types
+        else {
+            console.error("An unknown error occurred:", error);
+        }
     } finally {
-      setLoading(false);
+        setLoading(false); // Ensure loading state is reset in any case
     }
-  };
+};
+
 
   // Effect hook to manage button disable state based on form input
   useEffect(() => {
@@ -64,20 +74,13 @@ export default function Login() {
 
   return (
     <div className="flex min-h-screen flex-col justify-center px-6 py-12 bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl font-bold tracking-tight">
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
+        <h2 className=" text-center text-2xl font-bold tracking-tight">
           Login to your account
         </h2>
-        {/* <Image
-          src="https://cdn.pixabay.com/photo/2022/09/07/12/22/autumn-7438675_960_720.jpg"
-          alt="Login Banner"
-          width={500}
-          height={500}
-          className="mt-6 rounded-md shadow-md"
-        /> */}
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md shadow-white border border-gray-200 dark:border-gray-700">
         <form onSubmit={onLogin} className="space-y-6">
           {loading && <Spinner />}
 

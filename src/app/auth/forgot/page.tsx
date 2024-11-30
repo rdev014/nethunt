@@ -36,11 +36,15 @@ export default function Forgot() {
 
       }
 
-    } catch (err) {
-      console.log("Error in forgot password submission", err);
-      setError("Error in forgot password submission. Please try again.");
-
-    }
+    } catch (err: unknown) {
+      console.error("Error in forgot password submission:", err);
+  
+      // Provide a user-friendly error message
+      setError(
+          "An error occurred while submitting the forgot password request. Please try again later."
+      );
+  }
+  
   };
 
   return (

@@ -1,10 +1,14 @@
 'use client'
 import { useEffect } from "react";
 import gsap from "gsap";
-import Head from 'next/head';
+// import { Metadata } from "next";
 
-
+// export const metadata: Metadata = {
+//   title: "NetHunt",
+//   description: "Start Hunting",
+// };
 export default function Home() {
+  
   useEffect(() => {
     const createShootingStar = () => {
       // Create the shooting star element
@@ -22,7 +26,7 @@ export default function Home() {
       gsap.to(star, {
         x: "85vw",  // Move the star to the right
         y: "50vh",  // Move the star to the bottom
-        duration: Math.random() * 2 + 1, // Randomize the duration
+        duration: Math.random() * 3 + 1, // Randomize the duration
         ease: "power1.in",
         onComplete: () => {
           // Splash effect when the star reaches the bottom-right
@@ -50,9 +54,7 @@ export default function Home() {
 
   return (
     <div className="dark:bg-gray-900 dark:text-white">
-      <Head>
-        <title>NetHunt - Explore Tech Insights</title>
-      </Head>
+    
       <div className="min-h-screen dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-950 flex flex-col items-center justify-center px-4 overflow-hidden">
         <div className="text-center space-y-4">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight">

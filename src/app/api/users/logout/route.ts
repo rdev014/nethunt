@@ -16,8 +16,18 @@ export async function GET() {
         
         
         return response;
-    } catch (error: any) {
-        return NextResponse.json({ error: 'what the fuck ' + error.message }, { status: 500 })
+    } catch (error: unknown) {
+        console.error('An error occurred:', error); // Log the error for debugging
+    
+        let errorMessage = 'An unexpected error occurred';
+        if (error instanceof Error) {
+            errorMessage = error.message; // Access the message property safely
+        }
+    
+        return NextResponse.json(
+            { error: `Internal Server Error: ${errorMessage}` },
+            { status: 500 }
+        );
     }
 
 }

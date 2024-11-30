@@ -4,13 +4,13 @@ import { useState } from "react";
 export default function NewsletterSection() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Simulate the email submission
     setSubmitted(true);
     setEmail(""); // Clear the input
-  };
+};
+
 
   return (
     <section className="bg-gray-800 py-16 px-6 text-center border-b-2 border-dashed">

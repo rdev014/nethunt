@@ -37,9 +37,18 @@ export async function POST(resquest: NextRequest) {
 
         return NextResponse.json({ message: "Email  verified", success: true });
 
-    } catch (error: any) {
-        console.error("Error while verifu=ing email", error.message);
-        return NextResponse.json({ error: error.message || "An unknown Error Occur" }, { status: 500 })
+       // Your main logic here
+} catch (error: unknown) {
+    console.error("Error while verifying email:", error);
 
-    }
+    // Safely extract the error message
+    const errorMessage = error instanceof Error 
+        ? error.message 
+        : "An unknown error occurred";
+
+    return NextResponse.json(
+        { error: errorMessage },
+        { status: 500 }
+    );
+}
 }

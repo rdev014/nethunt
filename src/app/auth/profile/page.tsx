@@ -1,5 +1,7 @@
 'use client';
 
+import Image from "next/image";
+
 export default function Page() {
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50 py-10 px-6">
@@ -8,10 +10,12 @@ export default function Page() {
         <div className="rounded-lg shadow-xl p-6 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
           <div className="flex items-center space-x-6">
             <div className="flex-shrink-0">
-              <img
+              <Image
                 className="h-24 w-24 rounded-full ring-4 ring-blue-500"
-                src="https://via.placeholder.com/96"
+                src="https://cdn.pixabay.com/photo/2017/01/31/23/42/animal-2028258_960_720.png"
                 alt="Profile Avatar"
+                  width={200}
+                  height={200}
               />
             </div>
             <div>
@@ -40,10 +44,12 @@ export default function Page() {
                 key={index}
                 className="flex flex-col items-center bg-white dark:bg-neutral-800 rounded-lg p-4 shadow-lg border border-neutral-200 dark:border-neutral-700"
               >
-                <img
+                <Image
                   className="h-16 w-16"
-                  src="https://via.placeholder.com/64"
+                  src="https://cdn.pixabay.com/photo/2017/01/31/23/42/animal-2028258_960_720.png"
                   alt={`${badge.name} Badge`}
+                  width={200}
+                  height={200}
                 />
                 <h4 className={`mt-2 font-bold ${badge.color}`}>{badge.name}</h4>
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">

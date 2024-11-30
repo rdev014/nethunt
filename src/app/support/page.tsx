@@ -6,12 +6,12 @@ export default function Support() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
     setForm({ name: "", email: "", message: "" });
@@ -25,7 +25,7 @@ export default function Support() {
           {/* Hero Section */}
           <section className="text-center mb-12">
             <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-400">
-              Need Help? We’re Here for You!
+              Need Help? We&rsquo;re Here for You!
             </h1>
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
               Explore our FAQs, contact support, or check out our resources to get the assistance you need.
@@ -43,7 +43,7 @@ export default function Support() {
                   How do I reset my password?
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300 mt-2">
-                  You can reset your password by clicking on the "Forgot Password" link on the login page.
+                  You can reset your password by clicking on the &quot;Forgot Password&quot; link on the login page.
                 </p>
               </div>
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
@@ -51,7 +51,7 @@ export default function Support() {
                   Where can I find the latest challenges?
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300 mt-2">
-                  Challenges are listed on the "Challenges" page under the "Community" section.
+                  Challenges are listed on the &quot;Challenges&quot; page under the &quot;Community&quot; section.
                 </p>
               </div>
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
