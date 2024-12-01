@@ -188,25 +188,7 @@ export default function Header() {
             </DisclosureButton>
           ))}
         </div>
-        <div className="mt-2 px-4 py-2 text-center">
-                  {isAuthenticated ? (
-                    <button
-                      onClick={handleLogout}
-                      className="w-full bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-all duration-300"
-                    >
-                      Logout
-                    </button>
-                  ) : (
-                    <>
-                      <Link href="/auth/login" className="block py-1 hover:text-blue-400">
-                        Login
-                      </Link>
-                      <Link href="/auth/register" className="block py-1 hover:text-blue-400">
-                        Register
-                      </Link>
-                    </>
-                  )}
-                </div>
+      
       </DisclosurePanel>
     </Disclosure>
   )
