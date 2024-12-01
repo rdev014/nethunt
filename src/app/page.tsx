@@ -55,7 +55,7 @@ export default function Home() {
   return (
     <div className="dark:bg-gray-900 dark:text-white">
     
-      <div className="min-h-screen dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-950 flex flex-col items-center justify-center px-4 overflow-hidden">
+      <div className="min-h-screen dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-950 flex flex-col items-center justify-center  overflow-hidden">
         <div className="text-center space-y-4">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-orange-500">

@@ -188,7 +188,6 @@ export default function Header() {
               {item.name}
             </DisclosureButton>
           ))}
-        <AuthButton/>
         </div>
        
       </DisclosurePanel>
