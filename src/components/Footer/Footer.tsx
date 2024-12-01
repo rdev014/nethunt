@@ -2,7 +2,7 @@
 import Link from "next/link";
 export default function Footer() {
   return (
-    <footer className="w-full py-14 bg-gray-900 text-white">
+    <footer className="w-full py-14 bg-gray-900 dark:bg-gray-800 text-white">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
             <Link href="https://NetHunt.io/" className="flex justify-center ">

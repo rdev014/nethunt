@@ -1,6 +1,7 @@
 'use client'
 import { useEffect } from "react";
 import gsap from "gsap";
+import NewsletterSection from "@/components/Newsletter/Newsletter";
 // import { Metadata } from "next";
 
 // export const metadata: Metadata = {
@@ -90,7 +91,7 @@ export default function Home() {
 
           {/* What NetHunt Does */}
           <div className="space-y-4 text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-orange-400 dark:text-orange-300">
+            <h2 className="text-3xl md:text-4xl font-bold text-orange-400 dark:text-orange-600">
               What NetHunt Does
             </h2>
             <p className="text-lg md:text-xl  dark:text-gray-200">
@@ -163,6 +164,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <NewsletterSection/>
     </div>
   );
 }

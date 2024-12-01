@@ -30,7 +30,7 @@ const navigation: NavigationItem[] = [
   { name: 'About', href: '/about', current: false },
   { name: 'Community', href: '/community', current: false },
   { name: 'Challenges', href: '/challenges', current: false },
-  { name: 'Blogs', href: '/blogs', current: true },
+  { name: 'Blogs', href: '/blogs', current: false },
   { name: 'Contact', href: '/contact', current: false },
   { name: 'Profile', href: '/auth/profile', current: false },
   { name: 'Reward', href: '/reward', current: false },
@@ -67,38 +67,33 @@ export default function Header() {
   }
 
   return (
-    <Disclosure as="nav" className="bg-gray-900 dark:bg-gray-800 shadow-lg">
+    <Disclosure as="nav" className="bg-gray-900 dark:bg-gray-800 shadow-lg  ">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Brand Name */}
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <Image
-                alt="NetHunt"
-                width={30}
-                height={30}
-                src="https://cdn.pixabay.com/photo/2022/07/24/11/35/women-7341444_1280.jpg"
-                className="h-8 w-8 rounded-full"
-              />
+             <Link href='/' className='text-orange-600 text-2xl font-extrabold'>NetHunt</Link>
             </div>
-            <div className="hidden md:block ml-4">
-              <div className="flex items-baseline space-x-6">
-                {/* Navigation Links */}
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    aria-current={item.current ? 'page' : undefined}
-                    className={classNames(
-                      item.current
-                        ? 'text-white bg-indigo-600 rounded-lg py-2 px-3 transition-all duration-300'
-                        : 'text-gray-300 hover:bg-indigo-600 hover:text-white rounded-lg py-2 px-3 transition-all duration-300'
-                    )}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
+          </div>
+
+          {/* Center Navigation Links */}
+          <div className="hidden md:block flex-1">
+            <div className="flex justify-center space-x-6">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  aria-current={item.current ? 'page' : undefined}
+                  className={classNames(
+                    item.current
+                      ? 'text-white bg-indigo-600 rounded-lg py-2 px-3 transition-all duration-300'
+                      : 'text-gray-300 hover:bg-orange-600 hover:text-white rounded-lg py-2 px-3 transition-all duration-300'
+                  )}
+                >
+                  {item.name}
+                </Link>
+              ))}
             </div>
           </div>
 
