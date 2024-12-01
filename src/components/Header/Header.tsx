@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import { useAuth } from '@/contexts/AuthContext'
-import AuthButton from '../Authbutton'
+
 
 interface NavigationItem {
   name: string
