@@ -1,7 +1,6 @@
 'use client'
 import { useEffect } from "react";
 import gsap from "gsap";
-import NewsletterSection from "@/components/Newsletter/Newsletter";
 // import { Metadata } from "next";
 
 // export const metadata: Metadata = {
@@ -164,7 +163,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <NewsletterSection/>
+     
     </div>
   );
 }
