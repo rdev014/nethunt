@@ -208,7 +208,7 @@ export default function Header() {
           <div className="border-t border-gray-700 pb-3 pt-4">
             <div className="flex items-center px-5">
               <div className="flex-shrink-0">
-                <img alt="" src={user.imageUrl} className="h-10 w-10 rounded-full" />
+                <Image alt="" src={user.imageUrl} className="h-10 w-10 rounded-full" />
               </div>
               <div className="ml-3">
                 <div className="text-base/5 font-medium text-white">{user.name}</div>
