@@ -28,11 +28,13 @@ const user = {
 }
 
 const navigation: NavigationItem[] = [
-  { name: 'Dashboard', href: '/blogs', current: true },
-  { name: 'Profile', href: '/auth/profile', current: false },
+  { name: 'About', href: '/about', current: false },
+  { name: 'Community', href: '/community', current: false },
+  { name: 'Challenges', href: '/challenges', current: false },
   { name: 'Blogs', href: '/blogs', current: false },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Reports', href: '#', current: false },
+  { name: 'Contact', href: '/contact', current: false },
+  { name: 'Profile', href: '/auth/profile', current: false },
+  { name: 'Reward', href: '/reward', current: false },
 ]
 
 const userNavigation: UserNavigationItem[] = [
@@ -77,11 +79,7 @@ export default function Header() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <Image
-                  alt="Your Company" width={20} height={20}
-                  src="https://cdn.pixabay.com/photo/2022/07/24/11/35/women-7341444_1280.jpg"
-                  className="h-8 w-8"
-                />
+                <h1 className='text-orange-600 font-bold text-2xl'>NetHunt</h1>
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
