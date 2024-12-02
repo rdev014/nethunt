@@ -28,11 +28,13 @@ const user = {
 }
 
 const navigation: NavigationItem[] = [
-  { name: 'Dashboard', href: '/blogs', current: true },
-  { name: 'Profile', href: '/auth/profile', current: false },
+  { name: 'About', href: '/about', current: false },
+  { name: 'Community', href: '/community', current: false },
+  { name: 'Challenges', href: '/challenges', current: false },
   { name: 'Blogs', href: '/blogs', current: false },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Reports', href: '#', current: false },
+  { name: 'Contact', href: '/contact', current: false },
+  { name: 'Profile', href: '/auth/profile', current: false },
+  { name: 'Reward', href: '/reward', current: false },
 ]
 
 const userNavigation: UserNavigationItem[] = [
@@ -77,11 +79,7 @@ export default function Header() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <Image
-                  alt="Your Company" width={20} height={20}
-                  src="https://cdn.pixabay.com/photo/2022/07/24/11/35/women-7341444_1280.jpg"
-                  className="h-8 w-8"
-                />
+                <h3 className='text-orange-600 font-bold text-2xl'>NetHunt</h3>
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
@@ -182,9 +180,6 @@ export default function Header() {
                 <svg className="hidden h-6 w-6 group-data-[open]:block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
                 </svg>
-
-
-
               </DisclosureButton>
             </div>
           </div>
@@ -239,6 +234,25 @@ export default function Header() {
                   {item.name}
                 </DisclosureButton>
               ))}
+                <div className="flex items-center space-x-4">
+                      {isAuthenticated ? (
+                        <button
+                          onClick={handleLogout}
+                          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition"
+                        >
+                          Logout
+                        </button>
+                      ) : (
+                        <>
+                          <Link href="/auth/login">
+                            <span className="hover:text-blue-400 transition">Login</span>
+                          </Link>
+                          <Link href="/auth/register">
+                            <span className="hover:text-blue-400 transition">Register</span>
+                          </Link>
+                        </>
+                      )}
+                    </div>
             </div>
           </div>
         </DisclosurePanel>
