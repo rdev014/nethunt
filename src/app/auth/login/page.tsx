@@ -13,9 +13,6 @@ interface User {
 }
 
 export default function Login() {
-
-
-
   const router = useRouter();
 
   // State types
@@ -69,9 +66,7 @@ export default function Login() {
           Login to your account
         </h2>
       </div>
-    <div>
-  
-  </div>
+
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form onSubmit={onLogin} className="space-y-6">
           {loading ? <Spinner /> : ''}
