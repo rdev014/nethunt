@@ -36,7 +36,7 @@ export default function Login() {
       console.log("Login successful:", response.data);
       setIsAuthenticated(true);
       // Redirect after successful login
-      router.push('/');
+     window.location.href='/';
 
     } catch (error: unknown) {
       // Log full error details
