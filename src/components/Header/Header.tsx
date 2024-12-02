@@ -79,7 +79,7 @@ export default function Header() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <Link href='/' className='text-orange-600 font-bold text-2xl'>NetHunt</Link>
+                <h1 className='text-orange-600 font-bold text-2xl'><Link href='/'>NetHunt</Link></h1>
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
