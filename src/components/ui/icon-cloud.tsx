@@ -82,7 +82,7 @@ export default function IconCloud({ iconSlugs }: DynamicCloudProps) {
   }, [data, theme]);
 
   return (
-    // @ts-expect-error: The Cloud component expects a different type for props, so we cast it to ICloud type
+    // @ts-ignore
     <Cloud {...(cloudProps as ICloud)}>
       <>{renderedIcons}</>
     </Cloud>
