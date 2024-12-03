@@ -51,8 +51,7 @@ export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
       href: undefined,
       target: undefined,
       rel: undefined,
-      onClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => e.preventDefault(),
-
+      onClick: (e: unknown) => e.preventDefault(),
     },
   });
 };
@@ -83,11 +82,9 @@ export default function IconCloud({ iconSlugs }: DynamicCloudProps) {
 
   return (
     // @ts-ignore
-    <Cloud {...(cloudProps as ICloud)}>
+    <Cloud {...cloudProps}>
       <>{renderedIcons}</>
     </Cloud>
-
-
   );
 }
 
