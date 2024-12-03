@@ -51,7 +51,8 @@ export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
       href: undefined,
       target: undefined,
       rel: undefined,
-      onClick: (e: unknown) => e.preventDefault(),
+      onClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => e.preventDefault(),
+
     },
   });
 };
@@ -81,10 +82,12 @@ export default function IconCloud({ iconSlugs }: DynamicCloudProps) {
   }, [data, theme]);
 
   return (
-    // @ts-ignore
-    <Cloud {...cloudProps}>
+    // @ts-expect-error: The Cloud component expects a different type for props, so we cast it to ICloud type
+    <Cloud {...(cloudProps as ICloud)}>
       <>{renderedIcons}</>
     </Cloud>
+
+
   );
 }
 
