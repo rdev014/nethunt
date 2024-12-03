@@ -154,8 +154,13 @@ export default function Home() {
           </div>
 
           {/* What NetHunt Does */}
-          <div className="relative flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg border border-white bg-background px-20 pb-20 pt-8 ">
-            <IconCloud iconSlugs={slugs} />
+          <div className="space-y-4 text-center md:text-left">
+            <h2 className="text-3xl md:text-4xl font-bold text-blue-500 dark:text-blue-300">
+              What is NetHunt For?
+            </h2>
+            <p className="text-lg md:text-xl  dark:text-gray-200">
+              NetHunt is a tech-focused blogging platform designed for tech enthusiasts, professionals, and innovators. Our mission is to provide the latest in tech news, trends, and insights, while fostering a vibrant community of tech enthusiasts.
+            </p>
           </div>
         </div>
       </section>
