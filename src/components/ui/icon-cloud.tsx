@@ -33,6 +33,7 @@ export const cloudProps: Omit<ICloud, "children"> = {
     outlineColour: "#0000",
     maxSpeed: 0.04,
     minSpeed: 0.02,
+    // dragControl: false,
   },
 };
 
@@ -67,9 +68,7 @@ export default function IconCloud({ iconSlugs }: DynamicCloudProps) {
   const { theme } = useTheme();
 
   useEffect(() => {
-    fetchSimpleIcons({ slugs: iconSlugs })
-      .then(setData)
-      .catch((err) => console.error("Failed to fetch icons:", err));
+    fetchSimpleIcons({ slugs: iconSlugs }).then(setData);
   }, [iconSlugs]);
 
   const renderedIcons = useMemo(() => {
@@ -81,12 +80,9 @@ export default function IconCloud({ iconSlugs }: DynamicCloudProps) {
   }, [data, theme]);
 
   return (
-    // @ts-expect-error : The errror is resolved
+    // @ts-expect-error: The error is resolved
     <Cloud {...cloudProps}>
       <>{renderedIcons}</>
     </Cloud>
   );
 }
-
-
-
