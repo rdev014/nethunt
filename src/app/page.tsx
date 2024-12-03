@@ -6,8 +6,7 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 import { DotPattern } from "@/components/ui/dot-pattern";
-import FlipText from "@/components/ui/flip-text";
-import IconCloud from "@/components/ui/icon-cloud";
+import FlipText from "@/components/ui/flip-text";;
 import { BorderBeam } from "@/components/ui/border-beam";
 
 // import { Metadata } from "next";
@@ -154,9 +153,7 @@ export default function Home() {
           </div>
 
           {/* What NetHunt Does */}
-          <div className="relative flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg border border-white bg-background px-20 pb-20 pt-8 ">
-            <IconCloud iconSlugs={slugs} />
-          </div>
+          
         </div>
       </section>
 
