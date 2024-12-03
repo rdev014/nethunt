@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import FlipText from "@/components/ui/flip-text";
 import IconCloud from "@/components/ui/icon-cloud";
+import { BorderBeam } from "@/components/ui/border-beam";
+
 // import { Metadata } from "next";
 
 // export const metadata: Metadata = {
@@ -45,7 +47,7 @@ const slugs = [
   "sonarqube",
   "figma",
 ];
- 
+
 // };
 export default function Home() {
 
@@ -95,47 +97,49 @@ export default function Home() {
   return (
     <div className="dark:bg-gray-900 dark:text-white">
 
-      <div className="relative flex size-full items-center justify-center overflow-hidden rounded-lg border bg-background p-12 md:shadow-xl">
+<div className="relative flex flex-col items-center justify-center overflow-hidden rounded-lg border bg-background p-6 md:p-12 md:shadow-xl">
 
-        <div className="z-10 whitespace-pre-wrap text-center text-5xl font-medium tracking-tighter text-black dark:text-white">
-
-          <div className="min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
-            <div className="text-center space-y-4">
-              <h1 className="text-xl md:text-6xl font-bold tracking-tight">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-orange-500">
-                  Innovative Features
-                </span>{" "}
-                <FlipText
-                  className="text-4xl space-x-1 font-bold -tracking-widest text-black dark:text-white md:text-7xl md:leading-[5rem]"
-                  word="To Elevate Your Tech Journey"
-                />
-
-
-              </h1>
-              <p className="text-lg md:text-xl max-w-2xl mx-auto">
-                Stay updated with the latest tech trends, participate in challenges, and earn badges with NetHunt – where tech enthusiasts connect and grow.
-              </p>
-              <Link href="/blogs" className="z-10 flex min-h-64 items-center justify-center">
-                <ShimmerButton className="shadow-2xl">
-                  <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-orange-600 dark:to-orange-200/10 lg:text-lg">
-                    Explore Now
-                  </span>
-                </ShimmerButton>
-              </Link>
-            </div>
-          </div>
-        </div>
-        <DotPattern
-          width={20}
-          height={20}
-          cx={1}
-          cy={1}
-          cr={1}
-          className={cn(
-            "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] ",
-          )}
+<div className="z-10 whitespace-pre-wrap text-center text-2xl md:text-5xl font-medium tracking-tighter text-black dark:text-white">
+  <div className="min-h-screen flex flex-col items-center justify-center px-4 md:px-8 overflow-hidden">
+    <div className="text-center space-y-6 md:space-y-8">
+      <h1 className="text-2xl md:text-6xl font-bold tracking-tight leading-tight">
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-orange-500">
+          Innovative Features
+        </span>{" "}
+        <FlipText
+          className="text-xl md:text-4xl lg:text-5xl space-x-1 font-bold -tracking-widest text-black dark:text-white  md:leading-[5rem]"
+          word="To Elevate Your Tech Journey"
         />
-      </div>
+      </h1>
+      <p className="text-base md:text-lg lg:text-xl max-w-xl mx-auto">
+        Stay updated with the latest tech trends, participate in challenges, and earn badges with NetHunt – where tech enthusiasts connect and grow.
+      </p>
+      <Link
+        href="/blogs"
+        className="z-10 flex items-center justify-center">
+        <ShimmerButton className="shadow-2xl">
+          <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-orange-600 dark:to-orange-200/10 lg:text-lg">
+            Explore Now
+          </span>
+        </ShimmerButton>
+      </Link>
+    </div>
+  </div>
+</div>
+
+<DotPattern
+  width={20}
+  height={20}
+  cx={1}
+  cy={1}
+  cr={1}
+  className={cn(
+    "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] "
+  )}
+/>
+</div>
+
+
       {/* "What is NetHunt" and "What NetHunt Does" section */}
       <section className=" py-20 px-4 md:px-8  dark:bg-gray-900 dark:text-gray-100">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -150,14 +154,14 @@ export default function Home() {
           </div>
 
           {/* What NetHunt Does */}
-          <div className="space-y-4 text-center md:text-left">
+          <div className="relative flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg border border-white bg-background px-20 pb-20 pt-8 ">
             <IconCloud iconSlugs={slugs} />
           </div>
         </div>
       </section>
 
       {/* Badges Section */}
-      <section className=" py-20 px-4 md:px-8 dark:bg-gray-700 dark:text-gray-100">
+      <section className=" py-10 px-4 md:px-8 dark:bg-gray-700 dark:text-gray-100">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-blue-500 dark:text-blue-300">
             Earn Skill-Based Badges
@@ -167,6 +171,12 @@ export default function Home() {
           </p>
 
           {/* Badge Examples */}
+          <div className="relative mt-6 flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
+            <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-8xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">
+              Explore What you get
+            </span>
+            <BorderBeam size={250} duration={12} delay={9} />
+          </div>
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {/* Badge 1 - Novice */}
             <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-md shadow-white transform transition duration-500 hover:scale-105 dark:bg-gray-600">

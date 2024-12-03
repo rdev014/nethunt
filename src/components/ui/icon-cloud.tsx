@@ -33,7 +33,6 @@ export const cloudProps: Omit<ICloud, "children"> = {
     outlineColour: "#0000",
     maxSpeed: 0.04,
     minSpeed: 0.02,
-    // dragControl: false,
   },
 };
 
@@ -52,7 +51,7 @@ export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
       href: undefined,
       target: undefined,
       rel: undefined,
-      onClick: (e: any) => e.preventDefault(),
+      onClick: (e: unknown) => e.preventDefault(),
     },
   });
 };
@@ -68,7 +67,9 @@ export default function IconCloud({ iconSlugs }: DynamicCloudProps) {
   const { theme } = useTheme();
 
   useEffect(() => {
-    fetchSimpleIcons({ slugs: iconSlugs }).then(setData);
+    fetchSimpleIcons({ slugs: iconSlugs })
+      .then(setData)
+      .catch((err) => console.error("Failed to fetch icons:", err));
   }, [iconSlugs]);
 
   const renderedIcons = useMemo(() => {
@@ -86,3 +87,6 @@ export default function IconCloud({ iconSlugs }: DynamicCloudProps) {
     </Cloud>
   );
 }
+
+
+
