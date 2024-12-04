@@ -10,14 +10,19 @@
 
 .shooting-star {
     position: absolute;
-    width: 8px;
-    height: 4px;
-    background-color: rgb(255, 9, 9); /* You can change the color here to dark blue */
+    width: 6px;
+    height: 3px;
+    background-color: rgb(255, 255, 255); /* You can change the color here to dark blue */
     border-radius: 50%;
-    box-shadow: 0 0 6px navy, 0 0 10px rgb(0, 183, 255); /* Glowing effect */
+    box-shadow: 0 0 6px navy, 0 0 10px rgb(85, 203, 249); /* Glowing effect */
     opacity: 1;
     transform: translateX(0) translateY(0);
     overflow: hidden;
+  }
+  @media (max-width: 768px) {
+    .shooting-star {
+      display: none;
+    }
   }
   
   /* Hover Effects for Cards, Buttons, Logos */

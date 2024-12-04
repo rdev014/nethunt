@@ -23,8 +23,7 @@ interface UserNavigationItem {
 const user = {
   name: 'Tom Cook',
   email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  imageUrl:"https://cdn.pixabay.com/photo/2023/09/22/15/45/panda-8269336_960_720.png",
 }
 
 const navigation: NavigationItem[] = [
@@ -33,12 +32,11 @@ const navigation: NavigationItem[] = [
   { name: 'Challenges', href: '/challenges', current: false },
   { name: 'Blogs', href: '/blogs', current: false },
   { name: 'Contact', href: '/contact', current: false },
-  { name: 'Profile', href: '/auth/profile', current: false },
   { name: 'Reward', href: '/reward', current: false },
 ]
 
 const userNavigation: UserNavigationItem[] = [
-  { name: 'Your Profile', href: '#' },
+  { name: 'Your Profile', href: '/auth/profile' },
   { name: 'Settings', href: '#' },
 ]
 
@@ -101,17 +99,7 @@ export default function Header() {
             </div>
             <div className="hidden md:block">
               <div className="ml-4 flex items-center md:ml-6">
-                <button
-                  type="button"
-                  className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                >
-                  <span className="absolute -inset-1.5" />
-                  <span className="sr-only">View notifications</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-                  </svg>
-
-                </button>
+                
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
@@ -134,7 +122,7 @@ export default function Header() {
                     {userNavigation.map((item) => (
                       <MenuItem key={item.name}>
                         <Link href={item.href}
-                          className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none">
+                          className="block px-4 py-2 text-center text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none">
                           {item.name}
 
                         </Link>
@@ -142,7 +130,7 @@ export default function Header() {
                       </MenuItem>
 
                     ))}
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center justify-center space-x-4 p-2">
                       {isAuthenticated ? (
                         <button
                           onClick={handleLogout}
@@ -165,7 +153,9 @@ export default function Header() {
 
                 </Menu>
                 {user ? '' : <Link className='pl-5 text-blue-600 text-lg' href="/auth/register">Register</Link>}
+                <div className='px-4'>
                 <ThemeSwitch />
+                </div>
 
               </div>
             </div>
