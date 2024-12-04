@@ -1,49 +1,42 @@
 import OrbitingCircles from "@/components/ui/orbiting-circles";
 
 export function Orbit() {
-  // Define dynamic values for mobile responsiveness
-  const isMobile = window.innerWidth <= 768;
-
   return (
-    <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-xl border bg-background md:shadow-xl">
+    <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg  bg-background md:shadow-xl">
       <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300 bg-clip-text text-center text-4xl font-semibold leading-none text-orange-500 dark:from-white dark:to-black">
         NetHunt
       </span>
 
       {/* Inner Circles */}
-      {!isMobile && (
-        <>
-          <OrbitingCircles
-            className="size-[30px] border-none bg-transparent"
-            duration={20}
-            delay={20}
-            radius={80}
-          >
-            <Icons.whatsapp />
-          </OrbitingCircles>
-          <OrbitingCircles
-            className="size-[30px] border-none bg-transparent"
-            duration={20}
-            delay={10}
-            radius={80}
-          >
-            <Icons.notion />
-          </OrbitingCircles>
-        </>
-      )}
+      <OrbitingCircles
+        className="size-[30px] border-none bg-transparent"
+        duration={20}
+        delay={20}
+        radius={80}
+      >
+        <Icons.whatsapp />
+      </OrbitingCircles>
+      <OrbitingCircles
+        className="size-[30px] border-none bg-transparent"
+        duration={20}
+        delay={10}
+        radius={80}
+      >
+        <Icons.notion />
+      </OrbitingCircles>
 
       {/* Outer Circles (reverse) */}
       <OrbitingCircles
-        className={`size-[${isMobile ? "30px" : "50px"}] border-none bg-transparent`}
-        radius={isMobile ? 120 : 190}
+        className="size-[50px] border-none bg-transparent"
+        radius={190}
         duration={20}
         reverse
       >
         <Icons.googleDrive />
       </OrbitingCircles>
       <OrbitingCircles
-        className={`size-[${isMobile ? "30px" : "50px"}] border-none bg-transparent`}
-        radius={isMobile ? 120 : 190}
+        className="size-[50px] border-none bg-transparent"
+        radius={190}
         duration={20}
         delay={20}
         reverse
@@ -53,7 +46,6 @@ export function Orbit() {
     </div>
   );
 }
-
 
 const Icons = {
   gitHub: () => (
