@@ -8,6 +8,7 @@ import Link from "next/link";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import FlipText from "@/components/ui/flip-text";
 import { Orbit } from "@/components/Orbit/Orbit";
+import Index from ".";
 
 // import { Metadata } from "next";
 
@@ -78,7 +79,7 @@ export default function Home() {
     <div className="dark:bg-gray-900 dark:text-white">
 
       {/* Hero Section */}
-      <div className="relative flex flex-col items-center justify-center overflow-hidden rounded-lg border bg-background h-[100vh] px-6 md:px-12 md:shadow-xl">
+      <div className="relative flex flex-col items-center justify-center overflow-hidden rounded-lg border bg-background h-[70vh] md:h-[100vh] px-6 md:px-12 md:shadow-xl">
         <div className="z-10 flex flex-col items-center justify-center text-center p-12">
           <h1 className="text-3xl md:text-8xl font-bold tracking-tight leading-tight">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-orange-500">
@@ -206,12 +207,12 @@ export default function Home() {
           </div>
 
           {/* What NetHunt Does */}
-          <div className=" rounded-full shadow-lg shadow-orange-600">
+          <div className=" rounded-full shadow-lg md:shadow-orange-600">
             <Orbit />
           </div>
         </div>
       </section>
-
+      <Index />
 
     </div>
 
