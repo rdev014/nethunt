@@ -2,9 +2,9 @@ import OrbitingCircles from "@/components/ui/orbiting-circles";
 
 export function Orbit() {
   return (
-    <div className="relative flex h-[500px] md:w-full  flex-col items-center justify-center overflow-hidden rounded-lg  md:bg-background md:shadow-xl">
-      <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300 bg-clip-text text-center text-4xl font-semibold leading-none text-orange-500 dark:from-white dark:to-black">
-        NetHunt
+    <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-md  bg-black md:shadow-xl">
+      <span className="pointer-events-none whitespace-pre-wrap bg-gray-300 bg-clip-text text-center text-4xl font-semibold leading-none text-orange-600">
+       NetHunt
       </span>
 
       {/* Inner Circles */}

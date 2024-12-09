@@ -67,12 +67,12 @@ export default function Page() {
   }
 
   return (
-    <div className="mx-auto px-4 py-8 bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
+    <div className="mx-auto px-4 py-8   bg-gray-900 text-white">
       <div className="relative flex items-center justify-center mb-6 md:flex md:flex-wrap">
   <h1 className="text-3xl font-bold text-center">All Posts</h1>
   <Link
     href="/blogs/create"
-    className="absolute right-6 py-2 px-4 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition"
+    className="absolute right-6 py-2 px-4 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700  transition"
   >
     Create Blog
   </Link>
@@ -81,14 +81,14 @@ export default function Page() {
 
 
       {posts.length === 0 ? (
-        <p className="text-center text-gray-600 dark:text-gray-400">No posts available.</p>
+        <p className="text-center text-gray-400">No posts available.</p>
       ) : (
         <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {posts.map((post) => (
               <div
                 key={post._id}
-                className="group flex flex-col h-full border border-gray-200 shadow-sm rounded-xl bg-white dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 hover:shadow-lg dark:hover:shadow-xl transition-shadow"
+                className="group flex flex-col h-full border border-gray-200 shadow-sm rounded-xl bg-gray-900  shadow-neutral-700/70 hover:shadow-lg transition-shadow"
               >
                 <div className="h-52 flex flex-col justify-center items-center rounded-t-xl overflow-hidden">
                   <Image
@@ -100,24 +100,24 @@ export default function Page() {
                   />
                 </div>
                 <div className="p-4 md:p-6">
-                  <span className="block mb-1 text-xs font-semibold uppercase text-blue-500 dark:text-blue-400">
+                  <span className="block mb-1 text-xs font-semibold uppercase  text-blue-400">
                     {post.category}
                   </span>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                  <h3 className="text-xl font-semibold  text-white group-hover:text-blue-600 0">
                     {post.title}
                   </h3>
-                  <p className="mt-3 text-gray-700 dark:text-gray-400">{post.content}</p>
+                  <p className="mt-3  text-gray-400">{post.content}</p>
                 </div>
-                <div className="mt-auto flex border-t border-gray-200 dark:border-neutral-700">
+                <div className="mt-auto flex border-t border-gray-200 ">
                   <button
                     onClick={() => handleDelete(post._id)}
-                    className="w-1/2 py-3 px-4 inline-flex justify-center items-center text-sm font-medium bg-gray-100 dark:bg-neutral-800 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-neutral-700 transition"
+                    className="w-1/2 py-3 px-4 inline-flex justify-center items-center text-sm font-medium  bg-gray-900  text-white hover:bg-gray-200  transition"
                   >
                     Delete
                   </button>
                   <Link
                     href={`/blogs/${post.slug}`}
-                    className="w-1/2 py-3 px-4 inline-flex justify-center items-center text-sm font-medium bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-800 transition"
+                    className="w-1/2 py-3 px-4 inline-flex justify-center items-center text-sm font-medium  bg-blue-900  text-blue-400 hover:bg-blue-200  transition"
                   >
                     View
                   </Link>

@@ -1,6 +1,5 @@
 
 import Link from "next/link";
-import ThemeSwitch from "../ThemeSwitch";
 export default function Footer() {
   return (
     <footer className="w-full py-14 bg-gray-900 dark:bg-gray-800 text-white">
@@ -41,7 +40,7 @@ export default function Footer() {
                             </svg>
                             
                     </Link>
-                    <ThemeSwitch />
+                
                 </div>
                 <span className="text-lg text-gray-500 text-center block ">©<Link href="https://nethunt.io/">NetHunt</Link> 2024, All rights reserved.</span>
         </div>

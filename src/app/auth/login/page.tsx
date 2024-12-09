@@ -59,9 +59,9 @@ export default function Login() {
   }, [user]);
 
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 dark:bg-gray-800 dark:text-white">
+    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-gray-950 text-white">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight dark:text-gray-100">
+        <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-100">
           Login to your account
         </h2>
       </div>
@@ -71,7 +71,7 @@ export default function Login() {
           {loading ? <Spinner /> : ''}
 
           <div>
-            <label htmlFor="email" className="block text-sm/6 font-medium dark:text-gray-100">
+            <label htmlFor="email" className="block text-sm/6 font-medium text-gray-100">
               Email address
             </label>
             <div className="mt-2">
@@ -90,7 +90,7 @@ export default function Login() {
 
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm/6 font-medium dark:text-gray-100">
+              <label htmlFor="password" className="block text-sm/6 font-medium text-gray-100">
                 Password
               </label>
               <div className="text-sm">

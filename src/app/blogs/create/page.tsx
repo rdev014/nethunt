@@ -52,9 +52,9 @@ export default function CreateBlogForm() {
   };
 
   return (
-    <div className='dark:bg-gray-900 p-6'>
-      <div className="max-w-xl mx-auto px-6 py-8 rounded-md shadow-md border bg-gray-50 dark:bg-gray-800 dark:border-gray-700 border-gray-200 shadow-white">
-      <h2 className="text-3xl font-semibold text-center mb-6 text-gray-800 dark:text-gray-200">
+    <div className='bg-gray-900 p-6'>
+      <div className="max-w-xl mx-auto px-6 py-8 rounded-md shadow-md border bg-gray-800  border-gray-200 shadow-white">
+      <h2 className="text-3xl font-semibold text-center mb-6  text-gray-200">
         Create a Blog Post
       </h2>
 
@@ -73,7 +73,7 @@ export default function CreateBlogForm() {
         <div className="mb-4">
           <label
             htmlFor="title"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            className="block text-sm font-medium text-gray-300"
           >
             Title
           </label>
@@ -91,7 +91,7 @@ export default function CreateBlogForm() {
         <div className="mb-4">
           <label
             htmlFor="category"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            className="block text-sm font-medium text-gray-300"
           >
             Category
           </label>
@@ -109,7 +109,7 @@ export default function CreateBlogForm() {
         <div className="mb-4">
           <label
             htmlFor="image"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            className="block text-sm font-medium text-gray-300"
           >
             Image URL
           </label>
@@ -127,7 +127,7 @@ export default function CreateBlogForm() {
         <div className="mb-4">
           <label
             htmlFor="content"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            className="block text-sm font-medium text-gray-300"
           >
             Content
           </label>

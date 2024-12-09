@@ -38,7 +38,7 @@ export default function Register() {
   }, [user]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center dark:bg-gray-900 dark:text-gray-200 px-6 py-12">
+    <div className="flex min-h-screen items-center justify-center bg-gray-900 text-gray-200 px-6 py-12">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="text-center text-2xl font-bold tracking-tight">
           Register your account
@@ -48,7 +48,7 @@ export default function Register() {
         </div>
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm shadow-lg dark:bg-gray-800 dark:shadow-md dark:shadow-white rounded-lg p-6">
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm bg-gray-800 shadow-md shadow-white rounded-lg p-6">
         <form className="space-y-6">
           <div>
             <label htmlFor="username" className="block text-sm font-medium">
@@ -63,7 +63,7 @@ export default function Register() {
                 type="text"
                 required
                 autoComplete="username"
-                className="block w-full rounded-md dark:bg-gray-700 dark:text-gray-200  border-2 py-2 px-3 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600"
+                className="block w-full rounded-md bg-gray-700 text-gray-200  border-2 py-2 px-3 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600"
               />
             </div>
           </div>
@@ -80,7 +80,7 @@ export default function Register() {
                 onChange={(e) => setUser({ ...user, email: e.target.value })}
                 required
                 autoComplete="email"
-                className="block w-full rounded-md dark:bg-gray-700 dark:text-gray-200  border-2 py-2 px-3 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600"
+                className="block w-full rounded-md bg-gray-700 text-gray-200  border-2 py-2 px-3 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600"
               />
             </div>
           </div>
@@ -98,7 +98,7 @@ export default function Register() {
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
                 required
                 autoComplete="current-password"
-                className="block w-full rounded-md dark:bg-gray-700 dark:text-gray-200  border-2 py-2 px-3 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600"
+                className="block w-full rounded-md bg-gray-700 text-gray-200  border-2 py-2 px-3 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600"
               />
             </div>
           </div>
@@ -113,7 +113,7 @@ export default function Register() {
                 type="password"
                 required
                 autoComplete="current-password"
-                className="block w-full rounded-md border-2 dark:bg-gray-700 dark:text-gray-200  py-2 px-3 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600"
+                className="block w-full rounded-md border-2 bg-gray-700 text-gray-200  py-2 px-3 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600"
               />
             </div>
           </div>
